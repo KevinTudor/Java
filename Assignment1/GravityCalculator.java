@@ -1,3 +1,9 @@
+/* 
+link: https://ocw.mit.edu/courses/6-092-introduction-to-programming-in-java-january-iap-2010/resources/mit6_092iap10_assn01/
+
+Assignment 1: In this assignment, you will create a program that computes the distance an object will fall in Earth's gravity. 
+*/
+
 package Assignment1;
 public class GravityCalculator {
     public static void main(String[] arguments) {
