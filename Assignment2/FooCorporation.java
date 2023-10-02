@@ -65,8 +65,10 @@ public class FooCorporation {
         employee e1 = new employee("Employee 1", "7.50", "35");
         employee e2 = new employee("Employee 2", "8.20", "47");
         employee e3 = new employee("Employee 3", "10.00", "73");
+        employee e4 = new employee("Employee 4", "10.00", "30");
+        employee e5 = new employee("Employee 5", "5.00", "73");
 
-        List<employee> employeeList = new ArrayList<employee>(Arrays.asList(e1,e2,e3));
+        List<employee> employeeList = new ArrayList<employee>(Arrays.asList(e1,e2,e3,e4,e5));
         HashMap<String, List<String>> employeeHashMap = new HashMap<String, List<String>>(); 
 
         for(employee e : employeeList) {            
@@ -77,6 +79,31 @@ public class FooCorporation {
                 employeeHashMap.get(e.name).add(e.pay+","+e.hours);
             }
         }
-        System.out.println(employeeHashMap);
+        System.out.println(employeeHashMap+"\n");
+
+        for (employee employee : employeeList) {
+            
+            Double pay = Double.valueOf(employee.pay);
+            Integer hours = Integer.parseInt(employee.hours);
+            Double minpay = 8.00;
+
+            System.out.println(employee.name+": Pay $"+pay+" Hours: "+hours);
+
+            if (hours < 60 && pay > minpay){
+                if(hours < 40){
+                    System.out.println("$"+(pay*hours));
+                }else{
+                    System.out.println("$"+(((pay*1.5)*(hours-40))+(pay*40))+" ("+(hours-40)+" hours overtime)");
+                }
+            }else{
+                if (hours > 60){
+                    System.out.println("ERROR: "+(hours - 60)+" hours over 60");
+                }
+                if (pay < minpay){
+                    System.out.println("ERROR: $"+(minpay-pay)+" below minimum pay of $"+ minpay);
+                }
+            }
+            System.out.println("\n");
+        } 
     }
 }
