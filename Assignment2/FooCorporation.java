@@ -87,20 +87,20 @@ public class FooCorporation {
             Integer hours = Integer.parseInt(employee.hours);
             Double minpay = 8.00;
 
-            System.out.println(employee.name+": Pay $"+pay+" Hours: "+hours);
+            System.out.println(employee.name+": Pay $"+String.format("%.2f",pay)+" Hours: "+hours);
 
             if (hours < 60 && pay > minpay){
                 if(hours < 40){
-                    System.out.println("$"+(pay*hours));
+                    System.out.println("$"+String.format("%.2f",pay*hours));
                 }else{
-                    System.out.println("$"+(((pay*1.5)*(hours-40))+(pay*40))+" ("+(hours-40)+" hours overtime)");
+                    System.out.println("$"+(String.format("%.2f",((pay*1.5)*(hours-40))+(pay*40)))+" ("+(hours-40)+" hours overtime)");
                 }
             }else{
                 if (hours > 60){
                     System.out.println("ERROR: "+(hours - 60)+" hours over 60");
                 }
                 if (pay < minpay){
-                    System.out.println("ERROR: $"+(minpay-pay)+" below minimum pay of $"+ minpay);
+                    System.out.println("ERROR: $"+String.format("%.2f",(minpay-pay))+" below minimum pay of $"+ String.format("%.2f",minpay));
                 }
             }
             System.out.println("\n");
