@@ -11,21 +11,23 @@ books.
 
 package Assignment4;
 
+import java.time.Instant;
+
 public class Book {
     String title;
-    boolean borrowed;
+    static boolean borrowed;
     
     // Creates a new Book
     public Book(String bookTitle) {
-        // Implement this method
+        title = bookTitle;
     }
     // Marks the book as rented
-    public void borrowed() {
-        // Implement this method
+    public static void borrowed() {
+        borrowed = true;
     }
     // Marks the book as not rented
     public void returned() {
-        // Implement this method
+        borrowed = false;
     }
     // Returns true if the book is rented, false otherwise
     public boolean isBorrowed() {
@@ -47,5 +49,6 @@ public class Book {
     }
 
     private void rented() {
+        Book.borrowed();
     }
 } 
