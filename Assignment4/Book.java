@@ -5,22 +5,24 @@ Assignment 4:
     The libraries of SmallTownX need a new electronic rental system, and it is up to you to build it. SmallTownX has two
 libraries. Each library offers many books to rent. Customers can print the list of available books, borrow, and return
 books. 
-
-
 */
 
 package Assignment4;
 
 public class Book {
     String title;
-    static boolean borrowed;
+    boolean borrowed;
     
     // Creates a new Book
     public Book(String bookTitle) {
         title = bookTitle;
+        borrowed = false;
+    }
+    private void rented() {
+        borrowed();
     }
     // Marks the book as rented
-    public static void borrowed() {
+    public void borrowed() {
         borrowed = true;
     }
     // Marks the book as not rented
@@ -44,9 +46,5 @@ public class Book {
         System.out.println("Borrowed? (should be true): " + example.isBorrowed());
         example.returned();
         System.out.println("Borrowed? (should be false): " + example.isBorrowed());
-    }
-
-    private void rented() {
-        Book.borrowed();
     }
 } 

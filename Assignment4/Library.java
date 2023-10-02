@@ -11,21 +11,39 @@ books.
 
 package Assignment4;
 
+import java.util.ArrayList;
+
 public class Library {
-     // Add the missing implementation to this class
-    public Library(String string) {
+    String libraryAddress;
+	ArrayList<Book> books;
+
+    public Library(String address) {
+        libraryAddress = address;
     }
     private void addBook(Book book) {
+        books.add(book);
     }
     private void returnBook(String string) {
     }
     private void printAvailableBooks() {
     }
-    private void borrowBook(String string) {
+    private void borrowBook(String title) {
+        Book libraryBook;
+		String libraryBookTitle; 
+        
+        for(int i = 0; i < books.size(); i++){
+            
+        }
+
+            //System.out.println("Sorry, this book is already borrowed.");
+            //System.out.println("You successfully borrowed "+string);
+    
     }
     private void printAddress() {
+        System.out.println(libraryAddress);
     }
     private static void printOpeningHours() {
+        System.out.println("Libraries are open daily from 9am to 5pm.");
     }
 
     public static void main(String[] args) {
@@ -45,6 +63,7 @@ public class Library {
         firstLibrary.printAddress();
         secondLibrary.printAddress();
         System.out.println();
+        
         // Try to borrow The Lords of the Rings from both libraries
         System.out.println("Borrowing The Lord of the Rings:");
         firstLibrary.borrowBook("The Lord of the Rings");
