@@ -103,7 +103,7 @@ public class FooCorporation {
                     System.out.println("ERROR: $"+String.format("%.2f",(minpay-pay))+" below minimum pay of $"+ String.format("%.2f",minpay));
                 }
             }
-            System.out.println("\n");
+            System.out.println();
         } 
     }
 }
