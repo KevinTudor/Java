@@ -11,11 +11,6 @@ best runner, and then loop through all values to find the second-best (second lo
 
 package Assignment3;
 
-//import java.util.ArrayList;
-//import java.util.Arrays;
-//import java.util.HashMap;
-//import java.util.List;
-
 public class Marathon {
     public static void main(String[] args) {
         String[] names = {
@@ -27,8 +22,59 @@ public class Marathon {
             341, 273, 278, 329, 445, 402, 388, 275, 243, 334, 412, 393, 299,
             343, 317, 265
         };
+        
         for (int i = 0; i < names.length; i++) {
             System.out.println(names[i] + ": " + times[i]);
         }
+
+        //bestIndex(names, times);
+        secondBestIndex(names, times);
+    }
+
+    private static Integer bestIndex(String[] names, int[] times) {
+        Integer run1 = 0;
+        Integer bestIndex = 0;
+
+        System.out.println("\nMethod: Best Runner Index\n---------------------------------\n");
+        for (int i = 0; i < names.length; i++) {
+            if(i == 0){
+                run1 = times[i];
+                bestIndex = i;
+            }else{
+                if(times[i]<run1){
+                    run1 = times[i];
+                    bestIndex = i;
+                }
+            }
+            if(i == names.length-1){
+                System.out.println("Best runner: "+names[bestIndex]+", Time: " + times[bestIndex]+", Index: "+bestIndex);
+            }
+        }
+        return bestIndex;
+    }
+    private static Integer secondBestIndex(String[] names, int[] times) {
+        Integer run1 = 0;
+        Integer bestIndex = 0;
+        Integer bestRunner = bestIndex(names, times);
+
+        System.out.println("\nMethod: Second Best Runner Index\n---------------------------------\n");
+        for (int i = 0; i < names.length; i++) {
+            if(i == bestRunner){
+                i++;
+            }
+            if(i == 0){
+                run1 = times[i];
+                bestIndex = i;
+            }else{
+                if(times[i]<run1){
+                    run1 = times[i];
+                    bestIndex = i;
+                }
+            }
+            if(i == names.length-1){
+                System.out.println("Second best runner: "+names[bestIndex]+", Time: " + times[bestIndex]+", Index: "+bestIndex);
+            }
+        }
+        return bestIndex;
     }
 }
