@@ -11,33 +11,57 @@ books.
 
 package Assignment4;
 
-import java.util.ArrayList;
+import java.util.*;
 
 public class Library {
     String libraryAddress;
-	ArrayList<Book> books;
+	ArrayList<Book> libraryBooks;
 
     public Library(String address) {
         libraryAddress = address;
+        libraryBooks = new ArrayList<Book>();
     }
     private void addBook(Book book) {
-        books.add(book);
+        libraryBooks.add(book);
     }
-    private void returnBook(String string) {
+    private void returnBook(String title) {
+        for(int i=0; i<libraryBooks.size(); i++){
+            if (libraryBooks.get(i).getTitle() == title && libraryBooks.get(i).isBorrowed()){
+                libraryBooks.get(i).returned();
+                System.out.println("You successfully returned The Lord of the Rings");
+            }
+        }
     }
     private void printAvailableBooks() {
+        if(libraryBooks.size()>0){
+            for(int i=0; i<libraryBooks.size(); i++){
+                if (!libraryBooks.get(i).isBorrowed()){
+                    System.out.println(libraryBooks.get(i).getTitle());
+                }
+            }
+        }else{
+            System.out.println("No book in catalog");
+        }
     }
-    private void borrowBook(String title) {
-        Book libraryBook;
-		String libraryBookTitle; 
+    private String borrowBook(String title) {
+        Book tempBook;
         
-        for(int i = 0; i < books.size(); i++){
-            
+        for(int i=0; i<libraryBooks.size(); i++){
+            tempBook = libraryBooks.get(i);
+            if(tempBook.getTitle() == title){
+                if(tempBook.isBorrowed()){
+                    System.out.println("Sorry, this book is already borrowed.");
+                    return title;
+                }else{
+                    System.out.println("You successfully borrowed "+title);
+                    libraryBooks.get(i).borrowed();
+                    return title;
+                }
+            }
         }
 
-            //System.out.println("Sorry, this book is already borrowed.");
-            //System.out.println("You successfully borrowed "+string);
-    
+        System.out.println("Sorry, this book is not in our catalog.");
+        return title;
     }
     private void printAddress() {
         System.out.println(libraryAddress);
