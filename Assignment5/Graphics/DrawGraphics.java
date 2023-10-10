@@ -8,19 +8,48 @@ Assignment 5:
 package Assignment5.Graphics;
 
 import java.awt.Color;
+//import java.awt.Frame;
 import java.awt.Graphics;
+import java.util.ArrayList;
 
 public class DrawGraphics {
-    BouncingBox box;
+    ArrayList<BouncingBox> boxes;
     
     /** Initializes this class for drawing. */
     public DrawGraphics() {
-        box = new BouncingBox(200, 50, Color.RED);
+        boxes = new ArrayList<BouncingBox>();
+
+        boxes.add(new BouncingBox(SimpleDraw.WIDTH/2 - BouncingBox.SIZE, SimpleDraw.HEIGHT/2, Color.RED));
+        boxes.get(0).setMovementVector(0, 1);
+        boxes.add(new BouncingBox(SimpleDraw.WIDTH/2, SimpleDraw.HEIGHT/2, Color.GREEN));
+        boxes.get(1).setMovementVector(1, 2);
+        boxes.add(new BouncingBox(SimpleDraw.WIDTH/2 + BouncingBox.SIZE, SimpleDraw.HEIGHT/2, Color.BLUE));
+        boxes.get(2).setMovementVector(1, -3);
     }
     
     /** Draw the contents of the window on surface. Called 20 times per second. */
     public void draw(Graphics surface) {
-        surface.drawLine(50, 50, 250, 250);
-        box.draw(surface);
+        //Line
+        surface.drawLine(0, 0, SimpleDraw.WIDTH, SimpleDraw.HEIGHT);
+
+        //Oval
+        Integer ovalWidth = SimpleDraw.WIDTH/10;
+        Integer ovalHeight = SimpleDraw.HEIGHT/10;
+        surface.drawOval(0, SimpleDraw.HEIGHT-ovalHeight, ovalWidth, ovalHeight);
+
+        //Polygon (Triangle)
+        int[] polygonX = {0, SimpleDraw.WIDTH/10, SimpleDraw.WIDTH/5};
+        int[] polygonY = {0, SimpleDraw.WIDTH/10, 0};
+        surface.drawPolygon(polygonX, polygonY, 3);
+
+        //Arrow
+        int[] starX1= {0+SimpleDraw.WIDTH/4, SimpleDraw.WIDTH/20+SimpleDraw.WIDTH/4, SimpleDraw.WIDTH/10+SimpleDraw.WIDTH/4};
+        int[] starY1 = {0+SimpleDraw.WIDTH/8, SimpleDraw.WIDTH/20+SimpleDraw.WIDTH/8, 0+SimpleDraw.WIDTH/8};
+        surface.drawPolygon(starX1, starY1, 3);
+        surface.drawLine(SimpleDraw.WIDTH/20+SimpleDraw.WIDTH/4, SimpleDraw.WIDTH/8, SimpleDraw.WIDTH/20+SimpleDraw.WIDTH/4, SimpleDraw.WIDTH/20);
+
+        for (int i = 0; i < boxes.size(); i++){
+            boxes.get(i).draw(surface);
+        }
     }
 }

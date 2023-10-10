@@ -18,7 +18,7 @@ public class BouncingBox {
     Color color;
     int xDirection = 0;
     int yDirection = 0;
-    final int SIZE = 20;
+    static int SIZE = SimpleDraw.WIDTH/10;
 
     /**
      * Initialize a new box with its center located at (startX, startY), filled
