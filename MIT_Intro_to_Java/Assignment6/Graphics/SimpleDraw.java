@@ -25,8 +25,8 @@ public class SimpleDraw extends JPanel implements Runnable {
     private static final long serialVersionUID = -7469734580960165754L;
     private boolean animate = true;
     private final int FRAME_DELAY = 50; // 50 ms = 20 FPS
-    public static final int WIDTH = 300;
-    public static final int HEIGHT = 300;
+    public static final int WIDTH = 500;
+    public static final int HEIGHT = 500;
     private DrawGraphics draw;
 
     
