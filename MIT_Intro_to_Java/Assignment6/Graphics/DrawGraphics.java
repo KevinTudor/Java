@@ -15,15 +15,18 @@ import java.util.ArrayList;
 
 public class DrawGraphics {
     ArrayList<Bouncer> bouncers;
+    ArrayList<StraightMover> straightMovers;
 
     /** Initializes this class for drawing. */
     public DrawGraphics() {
+        //Define shapes
         Integer rectangleWidth = SimpleDraw.WIDTH/15;
         Integer rectangleHeight = SimpleDraw.HEIGHT/10;
-
-        bouncers = new ArrayList<Bouncer>();
         Rectangle box = new Rectangle(rectangleWidth, rectangleHeight, Color.RED);
         Oval circle = new Oval(rectangleWidth, rectangleHeight, Color.GREEN);
+
+        //Define bouncing sprites
+        bouncers = new ArrayList<Bouncer>();
 
         bouncers.add(new Bouncer(100, 170, box));
         bouncers.get(0).setMovementVector(3, 1);
@@ -31,6 +34,14 @@ public class DrawGraphics {
         bouncers.add(new Bouncer(170, 100, circle));
         bouncers.get(1).setMovementVector(1, 3);
 
+        //Define straight moving sprites
+        straightMovers = new ArrayList<StraightMover>();
+        
+        straightMovers.add(new StraightMover(100, 170, box));
+        straightMovers.get(0).setMovementVector(2, 1);
+
+        straightMovers.add(new StraightMover(170, 100, circle));
+        straightMovers.get(1).setMovementVector(1, 2);
     }
 
     /** Draw the contents of the window on surface. */
@@ -38,6 +49,9 @@ public class DrawGraphics {
         
         for (int i = 0; i < bouncers.size(); i++){
             bouncers.get(i).draw(surface);
+        }
+        for (int i = 0; i < straightMovers.size(); i++){
+            straightMovers.get(i).draw(surface);
         }
 
     }
