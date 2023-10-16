@@ -14,7 +14,7 @@ import java.awt.Graphics;
 import java.util.ArrayList;
 
 public class DrawGraphics {
-    ArrayList<Mover> movers;
+    ArrayList<Mover> movers = new ArrayList<Mover>();
 
     /** Initializes this class for drawing. */
     public DrawGraphics() {
@@ -23,8 +23,6 @@ public class DrawGraphics {
         Integer rectangleHeight = SimpleDraw.HEIGHT/10;
         Rectangle box = new Rectangle(rectangleWidth, rectangleHeight, Color.RED);
         Oval circle = new Oval(rectangleWidth, rectangleHeight, Color.GREEN);
-
-        movers = new ArrayList<Mover>();
 
         //Define bouncing sprites
         movers.add(new Bouncer(100, 170, box));
@@ -43,10 +41,8 @@ public class DrawGraphics {
 
     /** Draw the contents of the window on surface. */
     public void draw(Graphics surface) {
-        
-        for (int i = 0; i < movers.size(); i++){
-            movers.get(i).draw(surface);
+        for (Mover shape : movers){
+            shape.draw(surface);
         }
-
     }
 }
