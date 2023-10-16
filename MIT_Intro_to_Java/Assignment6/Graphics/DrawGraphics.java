@@ -14,8 +14,7 @@ import java.awt.Graphics;
 import java.util.ArrayList;
 
 public class DrawGraphics {
-    ArrayList<Bouncer> bouncers;
-    ArrayList<StraightMover> straightMovers;
+    ArrayList<Mover> movers;
 
     /** Initializes this class for drawing. */
     public DrawGraphics() {
@@ -25,33 +24,28 @@ public class DrawGraphics {
         Rectangle box = new Rectangle(rectangleWidth, rectangleHeight, Color.RED);
         Oval circle = new Oval(rectangleWidth, rectangleHeight, Color.GREEN);
 
+        movers = new ArrayList<Mover>();
+
         //Define bouncing sprites
-        bouncers = new ArrayList<Bouncer>();
+        movers.add(new Bouncer(100, 170, box));
+        movers.get(0).setMovementVector(3, 1);
 
-        bouncers.add(new Bouncer(100, 170, box));
-        bouncers.get(0).setMovementVector(3, 1);
+        movers.add(new Bouncer(170, 100, circle));
+        movers.get(1).setMovementVector(1, 3);
 
-        bouncers.add(new Bouncer(170, 100, circle));
-        bouncers.get(1).setMovementVector(1, 3);
+        //Define straight moving sprites        
+        movers.add(new StraightMover(100, 170, box));
+        movers.get(2).setMovementVector(2, 1);
 
-        //Define straight moving sprites
-        straightMovers = new ArrayList<StraightMover>();
-        
-        straightMovers.add(new StraightMover(100, 170, box));
-        straightMovers.get(0).setMovementVector(2, 1);
-
-        straightMovers.add(new StraightMover(170, 100, circle));
-        straightMovers.get(1).setMovementVector(1, 2);
+        movers.add(new StraightMover(170, 100, circle));
+        movers.get(3).setMovementVector(1, 2);
     }
 
     /** Draw the contents of the window on surface. */
     public void draw(Graphics surface) {
         
-        for (int i = 0; i < bouncers.size(); i++){
-            bouncers.get(i).draw(surface);
-        }
-        for (int i = 0; i < straightMovers.size(); i++){
-            straightMovers.get(i).draw(surface);
+        for (int i = 0; i < movers.size(); i++){
+            movers.get(i).draw(surface);
         }
 
     }
