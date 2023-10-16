@@ -20,8 +20,10 @@ public class MagicSquares {
         // Declare variable to check if all sums are equal
         List<Integer> rowSums = new ArrayList<>();
         List<Integer> columnSums = new ArrayList<>();
+        Integer diagonalRight = 0;
+        Integer diagonalLeft = 0;
         List<List<Integer>> table = new ArrayList<>();
-
+        Boolean diagonalsEqual = false;
 
         // Open file
         File myObj = new File(pathName);
@@ -47,26 +49,50 @@ public class MagicSquares {
         }
         myReader.close();
 
-        // Parse by column
+        // Parse by column and diagonals
+        Integer columnPointer = table.size() - 1;
+
         for (int row = 0; row < table.size(); row++){
+
+            // Find Diagonal Left Sum
+            Integer diagValue = table.get(row).get(columnPointer);
+            diagonalLeft = diagonalLeft + diagValue;
+            columnPointer = columnPointer - 1;
+
             for (int column = 0; column < table.get(row).size(); column++){
                 Integer value = table.get(row).get(column);
+
+                // Find column Sums
                 if (row == 0){
                     columnSums.add(value);
                 }else{
                     columnSums.set(column, columnSums.get(column) + value);
                 }
+
+                // Find Diagonal Right Sum
+                if (row == column){
+                    if (row == 0){
+                        diagonalRight = value;
+                    }else{
+                        diagonalRight = diagonalRight + value;
+                    }
+                }
             }
         }
+
         for (Integer value : columnSums){
             System.out.print(String.format("%-8d", value));
         }
         System.out.println("\n");
 
+        if (diagonalLeft - diagonalRight == 0){
+            diagonalsEqual = true;
+        }
+
         Boolean columnsEqual = columnSums.stream().allMatch(integer -> integer/1 == columnSums.get(0));
         Boolean rowsEqual = rowSums.stream().allMatch(integer -> integer/1 == rowSums.get(0));
 
-        return columnsEqual && rowsEqual;
+        return columnsEqual && rowsEqual && diagonalsEqual;
     }
     
     public static void main(String[] arguments) throws IOException{
