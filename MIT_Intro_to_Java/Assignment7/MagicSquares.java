@@ -4,7 +4,10 @@ link: https://ocw.mit.edu/courses/6-092-introduction-to-programming-in-java-janu
 Assignment 7: 
     A magic square of order n is an arrangement of n × n numbers, usually distinct integers, in a square, such that the n
 numbers in all rows, all columns, and both diagonals sum to the same constant
+
+TESTING ECLIPSE SOURCE CONTROL
 */
+
 
 package Assignment7;
 
